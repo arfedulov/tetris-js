@@ -5560,6 +5560,11 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
+transformation-matrix@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/transformation-matrix/-/transformation-matrix-2.2.0.tgz#1b98546a20b5ff882c30d7b3f35b5d08b420253e"
+  integrity sha512-cxs7k1YT05BgY03PZg8P4MJUcLCqYdG+web+rXdTpyCYfyu6u6CS+X0hSMkHHdFrWpe5gsIQwwPAik+K6UnuMw==
+
 ts-jest@^25.2.1:
   version "25.2.1"
   resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-25.2.1.tgz#49bf05da26a8b7fbfbc36b4ae2fcdc2fef35c85d"

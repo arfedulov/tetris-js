@@ -1,3 +1,4 @@
+
 export const COLOR_THEMES = {
   DEFAULT: [
     '#D9E5D6',
