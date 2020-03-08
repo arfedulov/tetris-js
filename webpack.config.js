@@ -1,4 +1,5 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = {
   entry: {
@@ -19,6 +20,11 @@ const config = {
       }
     ]
   },
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!index.html', '!favicon-16x16.png'],
+    }),
+  ],
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.js', '.ts']
   },
