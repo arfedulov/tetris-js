@@ -25,4 +25,16 @@ export interface IBoard {
   isPositionInsideBoard(position: IPoint): boolean;
 
   destroyRow(rowIndex: number): void;
+  getRowToDestroy(): number | undefined;
+
+  getElements(): Iterable<ITetrominoElement>;
+  addElements(elements: Iterable<ITetrominoElement>): void;
+}
+
+export interface IRenderer {
+  render(elementsContainer: IElementsContainer): void;
+}
+
+export interface IElementsContainer {
+  getElements(): Iterable<ITetrominoElement>;
 }

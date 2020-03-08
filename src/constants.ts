@@ -8,3 +8,8 @@ export const COLOR_THEMES = {
     '#254E70',
   ],
 };
+
+export const BOARD_SIZES = {
+  width: 10,
+  height: 30,
+};
