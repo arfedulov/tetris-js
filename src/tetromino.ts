@@ -122,6 +122,16 @@ class Tetromino implements ITetromino {
     return this.stuck;
   }
 
+  isOutOfBoard() {
+    for (const element of this.elements) {
+      if (element.y < 0) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   getElements() {
     return [ ...this.elements ];
   }

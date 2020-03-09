@@ -13,6 +13,7 @@ export interface ITetrominoElement {
 export interface ITetromino {
   getElements() : ITetrominoElement[];
   isStuck(): boolean;
+  isOutOfBoard(): boolean;
 
   moveLeft(): void;
   moveRight(): void;
