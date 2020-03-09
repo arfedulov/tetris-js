@@ -86,7 +86,7 @@ class ElementsTable {
   }
 }
 
-export class Board implements IBoard {
+class Board implements IBoard {
   private readonly width: number;
   private readonly height: number;
   private readonly elements: ElementsTable;
@@ -123,3 +123,13 @@ export class Board implements IBoard {
     return this.elements.getFirstFullRow(this.width);
   }
 }
+
+let board: IBoard;
+
+export const getBoard = () => {
+  if (!board) {
+    board = new Board();
+  }
+
+  return board;
+};

@@ -38,3 +38,8 @@ export interface IRenderer {
 export interface IElementsContainer {
   getElements(): Iterable<ITetrominoElement>;
 }
+
+export interface IColorTheme {
+  background: string;
+  tetrominos: string[];
+}
