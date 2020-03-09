@@ -1,17 +1,18 @@
+import { KEYBOARD_KEYS_SETTINGS } from './constants';
 
-export interface IControlsOptions {
-  playControl: EventTarget;
-  pauseControl: EventTarget;
-  stopControl: EventTarget;
-  leftControl: EventTarget;
-  rightControl: EventTarget;
-  downControl: EventTarget;
-  rotateControl: EventTarget;
-}
+const isLeftKey = (event: KeyboardEvent) => KEYBOARD_KEYS_SETTINGS.LEFT.includes(event.key);
 
-type ButtonName = 'right' | 'left' | 'down' | 'rotate';
+const isRightKey = (event: KeyboardEvent) => KEYBOARD_KEYS_SETTINGS.RIGHT.includes(event.key);
 
-type SwitchName = 'play' | 'pause' | 'stop';
+const isDownKey = (event: KeyboardEvent) => KEYBOARD_KEYS_SETTINGS.DOWN.includes(event.key);
+
+const isRotateKey = (event: KeyboardEvent) => KEYBOARD_KEYS_SETTINGS.ROTATE.includes(event.key);
+
+const isPauseKey = (event: KeyboardEvent) => KEYBOARD_KEYS_SETTINGS.PAUSE.includes(event.key);
+
+const isStopKey = (event: KeyboardEvent) => KEYBOARD_KEYS_SETTINGS.STOP.includes(event.key);
+
+const isPlayKey = (event: KeyboardEvent) => KEYBOARD_KEYS_SETTINGS.PLAY.includes(event.key);
 
 export interface IControls {
   left: boolean;
@@ -24,37 +25,20 @@ export interface IControls {
 }
 
 class Controls implements IControls {
-  private buttons: Record<ButtonName, boolean> = {
+  private buttons: Record<string, boolean> = {
     right: false,
     left: false,
     down: false,
     rotate: false,
   };
-  private switches: Record<SwitchName, boolean> = {
+  private switches: Record<string, boolean> = {
     stop: true,
     play: false,
     pause: false,
   };
 
-  constructor(options: IControlsOptions) {
-    const {
-      playControl,
-      pauseControl,
-      stopControl,
-      leftControl,
-      rightControl,
-      downControl,
-      rotateControl,
-    } = options;
-
-    [ leftControl, rightControl, downControl, rotateControl ].forEach((element) => {
-      element.addEventListener('keydown', this.onButtonDown);
-      element.addEventListener('keyup', this.onButtonUp);
-    });
-
-    [ playControl, pauseControl, stopControl ].forEach((element) => {
-      element.addEventListener('click', this.onSwitchClick);
-    });
+  constructor() {
+    this.setupListeners();
   }
 
   get right() {
@@ -85,30 +69,45 @@ class Controls implements IControls {
     return this.switches.pause;
   }
 
-  private onButtonDown = (e: any) => {
-    const name = e.target.name as ButtonName;
-    this.buttons[name] = true;
+  private setupListeners() {
+    window.addEventListener('keydown', this.onButtonPress);
+    window.addEventListener('keyup', this.onButtonPress);
+    window.addEventListener('keyup', this.onSwitchPress);
   }
 
-  private onButtonUp = (e: any) => {
-    const name = e.target.name as ButtonName;
-    this.buttons[name] = false;
+  private onButtonPress = (event: KeyboardEvent) => {
+    const value = event.type === 'keydown';
+
+    if (isLeftKey(event)) {
+      this.buttons.left = value;
+    } else if (isRightKey(event)) {
+      this.buttons.right = value;
+    } else if (isDownKey(event)) {
+      this.buttons.down = value;
+    } else if (isRotateKey(event)) {
+      this.buttons.rotate = value;
+    }
   }
 
-  private onSwitchClick = (e: any) => {
-    const name = e.target.name as SwitchName;
+  private onSwitchPress = (event: KeyboardEvent) => {
     Object.keys(this.switches).forEach((key) => {
-      this.switches[key as SwitchName] = false;
+      this.switches[key] = false;
     });
-    this.switches[name] = true;
+    if (isPauseKey(event)) {
+      this.switches.pause = true;
+    } else if (isStopKey(event)) {
+      this.switches.stop = true;
+    } else if (isPlayKey(event)) {
+      this.switches.play = true;
+    }
   }
 }
 
 let controls: Controls;
 
-export const getControls = (options: IControlsOptions) => {
+export const getControls = () => {
   if (!controls) {
-    controls = new Controls(options);
+    controls = new Controls();
   }
 
   return controls;

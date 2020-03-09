@@ -19,3 +19,13 @@ export const BOARD_SIZES = {
   width: 10,
   height: 30,
 };
+
+export const KEYBOARD_KEYS_SETTINGS = {
+  RIGHT: ['ArrowRight', 'd'],
+  LEFT: ['ArrowLeft', 'a'],
+  DOWN: ['ArrowDown', 's'],
+  ROTATE: [' ', 'Shift'],
+  PAUSE: ['Escape', 'p'],
+  STOP: ['CustomStop'],
+  PLAY: ['CustomPlay'],
+};
