@@ -17,7 +17,7 @@ export const COLOR_THEMES: Record<string, IColorTheme> = {
 
 export const BOARD_SIZES = {
   width: 10,
-  height: 30,
+  height: 20,
 };
 
 export const KEYBOARD_KEYS_SETTINGS = {
@@ -28,4 +28,8 @@ export const KEYBOARD_KEYS_SETTINGS = {
   PAUSE: ['Escape', 'p'],
   STOP: ['CustomStop'],
   PLAY: ['CustomPlay'],
+};
+
+export const DOM_ELEMENT_IDS = {
+  CANVAS_ELEMENT: 'canvas',
 };
