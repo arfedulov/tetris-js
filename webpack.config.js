@@ -22,7 +22,7 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!index.html', '!favicon-16x16.png'],
+      cleanOnceBeforeBuildPatterns: ['**/*', '!index.html', '!favicon-16x16.png', '!styles.css'],
     }),
   ],
   resolve: {
@@ -31,6 +31,7 @@ const config = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
+    host: '0.0.0.0',
     port: 9000
   },
   mode: 'development',
