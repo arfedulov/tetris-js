@@ -29,19 +29,31 @@ class Controls implements IControls {
   }
 
   get right() {
-    return this.buttons.right;
+    const val = this.buttons.right;
+    this.buttons.right = false;
+
+    return val;
   }
 
   get left() {
-    return this.buttons.left;
+    const val = this.buttons.left;
+    this.buttons.left = false;
+
+    return val;
   }
 
   get down() {
-    return this.buttons.down;
+    const val = this.buttons.down;
+    this.buttons.down = false;
+
+    return val;
   }
 
   get rotate() {
-    return this.buttons.rotate;
+    const val = this.buttons.rotate;
+    this.buttons.rotate = false;
+
+    return val;
   }
 
   private onButtonPress = (event: KeyboardEvent) => {

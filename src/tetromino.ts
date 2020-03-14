@@ -8,6 +8,7 @@ import {
   computeRotatedPoint,
   computeTranslatedPoint,
 } from './utils';
+import { BOARD_SIZES } from './constants';
 
 type TetrominoMovementDirection = 'left' | 'right' | 'down';
 
@@ -149,7 +150,24 @@ class Tetromino implements ITetromino {
   }
 
   rotate() {
-    this.applyRotation(Math.PI / 2);
+    const angle = Math.PI / 2;
+    if (this.canRotate(angle)) {
+      this.applyRotation(angle);
+    }
+  }
+
+  private canRotate(angle: number): boolean {
+    for (const element of this.elements) {
+      const { x, y } = element;
+      const computed = computeRotatedPoint({ x, y }, this.pivot, angle);
+      const isInsideBoard = computed.x >= 0 && computed.x < BOARD_SIZES.width && computed.y < BOARD_SIZES.height;
+
+      if (!isInsideBoard) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   private applyRotation(angle: number): void {
