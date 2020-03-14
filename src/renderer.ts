@@ -33,11 +33,17 @@ class Renderer implements IRenderer {
     this.renderingContext = canvas.getContext('2d') as CanvasRenderingContext2D;
   }
 
-  render(model: IElementsContainer) {
-    this.renderingContext.clearRect(0, 0, boardToCanvasCoord(BOARD_SIZES.width), boardToCanvasCoord(BOARD_SIZES.height));
-    for (const element of model.getElements()) {
-      drawElement(this.renderingContext, element);
+  render(...models: IElementsContainer[]) {
+    this.clear();
+    for (const model of models) {
+      for (const element of model.getElements()) {
+        drawElement(this.renderingContext, element);
+      }
     }
+  }
+
+  clear() {
+    this.renderingContext.clearRect(0, 0, boardToCanvasCoord(BOARD_SIZES.width), boardToCanvasCoord(BOARD_SIZES.height));
   }
 }
 

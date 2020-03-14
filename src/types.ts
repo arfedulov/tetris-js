@@ -23,17 +23,20 @@ export interface ITetromino {
 
 export interface IBoard {
   isPositionFilled(position: IPoint): boolean;
-  isPositionInsideBoard(position: IPoint): boolean;
+  isPositionInsideBoardOrAbove(position: IPoint): boolean;
 
   destroyRow(rowIndex: number): void;
   getRowToDestroy(): number | undefined;
 
   getElements(): Iterable<ITetrominoElement>;
   addElements(elements: Iterable<ITetrominoElement>): void;
+
+  clear(): void;
 }
 
 export interface IRenderer {
-  render(elementsContainer: IElementsContainer): void;
+  render(...models: IElementsContainer[]): void;
+  clear(): void;
 }
 
 export interface IElementsContainer {

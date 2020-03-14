@@ -22,7 +22,7 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!index.html', '!favicon-16x16.png'],
+      cleanOnceBeforeBuildPatterns: ['**/*', '!index.html', '!favicon-16x16.png', '!styles.css'],
     }),
   ],
   resolve: {

@@ -24,7 +24,7 @@ export const KEYBOARD_KEYS_SETTINGS = {
   RIGHT: ['ArrowRight', 'd'],
   LEFT: ['ArrowLeft', 'a'],
   DOWN: ['ArrowDown', 's'],
-  ROTATE: [' ', 'Shift'],
+  ROTATE: ['ArrowUp', 'w'],
   PAUSE: ['Escape', 'p'],
   STOP: ['CustomStop'],
   PLAY: ['CustomPlay'],

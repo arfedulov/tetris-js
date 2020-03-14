@@ -50,16 +50,18 @@ class ElementsTable {
 
   getFirstFullRow(rowWidth: number) {
     const keysSortedByRow = Array.from(this.table.keys()).sort((a, b) => parseKey(a).y - parseKey(b).y);
-
     let count = 0;
     let [prevKey] = keysSortedByRow;
     for (const key of keysSortedByRow) {
-      if (key === prevKey) {
+      const { y } = parseKey(key);
+      if (y === parseKey(prevKey).y) {
         count += 1;
+      } else {
+        count = 1;
       }
       prevKey = key;
       if (count >= rowWidth) {
-        return parseKey(key).y;
+        return y;
       }
     }
   }
@@ -89,11 +91,15 @@ class ElementsTable {
 class Board implements IBoard {
   private readonly width: number;
   private readonly height: number;
-  private readonly elements: ElementsTable;
+  private elements: ElementsTable;
 
   constructor() {
     this.width = BOARD_SIZES.width;
     this.height = BOARD_SIZES.height;
+    this.elements = new ElementsTable();
+  }
+
+  clear() {
     this.elements = new ElementsTable();
   }
 
@@ -109,10 +115,10 @@ class Board implements IBoard {
     return !this.elements.isPositionEmpty(point);
   }
 
-  isPositionInsideBoard(point: IPoint) {
+  isPositionInsideBoardOrAbove(point: IPoint) {
     const { x, y } = point;
 
-    return x >= 0 && x <= this.width - 1 && y >= 0 && y <= this.height - 1;
+    return x >= 0 && x <= this.width - 1 && y <= this.height - 1;
   }
 
   destroyRow(rowIndex: number) {

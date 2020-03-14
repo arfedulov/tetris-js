@@ -171,12 +171,18 @@ class Tetromino implements ITetromino {
     });
   }
 
+  private getMovedPivot(direction: TetrominoMovementDirection): IPoint {
+    const { tx, ty } = TRANSLATIONS_MAP[direction];
+
+    return computeTranslatedPoint(this.pivot, tx, ty);
+  }
+
   private canMove(direction: TetrominoMovementDirection): boolean {
     const moved = this.getMovedElements(direction);
 
     for (const element of moved) {
       const { x, y } = element;
-      if (!this.board.isPositionInsideBoard({ x, y }) || this.board.isPositionFilled({ x, y })) {
+      if (!this.board.isPositionInsideBoardOrAbove({ x, y }) || this.board.isPositionFilled({ x, y })) {
         return false;
       }
     }
@@ -194,6 +200,7 @@ class Tetromino implements ITetromino {
     }
 
     this.elements = this.getMovedElements(direction);
+    this.pivot = this.getMovedPivot(direction);
   }
 }
 
