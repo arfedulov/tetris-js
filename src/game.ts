@@ -17,17 +17,15 @@ const SPAWN_POINT: IPoint ={
 };
 
 class Game {
-  status: GameStatus = 'stopped';
-  score: number = 0;
-  colorTheme: IColorTheme = COLOR_THEMES.DEFAULT;
+  private status: GameStatus = 'stopped';
+  private colorTheme: IColorTheme = COLOR_THEMES.DEFAULT;
 
-  board: IBoard;
-  controls: IControls;
-  renderer: IRenderer;
-  tetromino?: ITetromino;
+  private board: IBoard;
+  private controls: IControls;
+  private renderer: IRenderer;
+  private tetromino?: ITetromino;
 
   private lastGameCycle: number;
-  private lastRender: number;
 
   constructor() {
     this.setupControlsListeners();
@@ -38,7 +36,6 @@ class Game {
     this.spawnTetromino();
 
     this.lastGameCycle = performance.now();
-    this.lastRender = performance.now();
 
     screens.displayStartScreen();
   }
@@ -70,23 +67,15 @@ class Game {
       this.lastGameCycle = timestamp;
       this.cycle();
     }
-    const makeNextRender = (timestamp - this.lastRender) > 0 && this.status === 'running';
-    if (makeNextRender) {
-      this.lastRender = timestamp;
-      if (this.tetromino) {
-        this.renderer.render(this.tetromino, this.board);
-      } else {
-        this.renderer.render(this.board);
-      }
+    if (this.tetromino) {
+      this.renderer.render(this.tetromino, this.board);
+    } else {
+      this.renderer.render(this.board);
     }
 
     if (this.status === 'running') {
       window.requestAnimationFrame(this.step);
     }
-  }
-
-  private addScore(score: number) {
-    this.score += score;
   }
 
   private pause() {

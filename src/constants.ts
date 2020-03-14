@@ -16,8 +16,8 @@ export const COLOR_THEMES: Record<string, IColorTheme> = {
 };
 
 export const BOARD_SIZES = {
-  width: 12,
-  height: 22,
+  width: 15,
+  height: 25,
 };
 
 export const BLOCK_SIZE = 30;
