@@ -16,9 +16,12 @@ export const COLOR_THEMES: Record<string, IColorTheme> = {
 };
 
 export const BOARD_SIZES = {
-  width: 10,
-  height: 20,
+  width: 12,
+  height: 22,
 };
+
+export const BLOCK_SIZE = 30;
+export const GAP_SIZE = 1;
 
 export const KEYBOARD_KEYS_SETTINGS = {
   RIGHT: ['ArrowRight', 'd'],

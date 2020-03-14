@@ -1,8 +1,5 @@
 import { IRenderer, IElementsContainer, ITetrominoElement } from './types';
-import { DOM_ELEMENT_IDS, BOARD_SIZES } from './constants';
-
-const BLOCK_SIZE = 30;
-const GAP_SIZE = 1;
+import { DOM_ELEMENT_IDS, BOARD_SIZES, BLOCK_SIZE, GAP_SIZE } from './constants';
 
 const boardToCanvasCoord = (coord: number): number => {
   return coord * BLOCK_SIZE;
