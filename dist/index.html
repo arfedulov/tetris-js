@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon-16x16.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tetris</title>
+</head>
+<body>
+  <div class="ui-screen" id="start-screen">
+    <div class="buttons-container">
+      <button id="play-btn">Play</button>
+    </div>
+  </div>
+  <div class="ui-screen" id="pause-screen">
+    <div class="buttons-container">
+      <button id="continue-btn">Continue</button>
+      <button id="restart-btn">Restart</button>
+    </div>
+  </div>
+  <div class="canvas-container">
+    <canvas width="450" height="750" id="canvas"></canvas>
+  </div>
+  <script src="index.bundle.js"></script>
+</body>
+</html>

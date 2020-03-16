@@ -1,2 +1,5 @@
 node_modules
-dist
+dist/**
+!dist/index.html
+!dist/styles.css
+!dist/favicon-16x16.png

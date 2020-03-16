@@ -2,9 +2,8 @@
   "name": "tetris-js",
   "version": "1.0.0",
   "description": "tetris game for browser",
-  "main": "index.js",
-  "author": "Artem Fedulov",
-  "license": "n/a",
+  "author": "Artem Fedulov <arfedulov@gmail.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "npx webpack --mode='production'",
